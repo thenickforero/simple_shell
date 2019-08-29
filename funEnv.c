@@ -1,11 +1,9 @@
 #include "prototype.h"
 
 /**
- * _getenv - Finds the value of an enviroment variable.
- *
- * @name: Name of the variable that will be serached.
- *
- * Return: A string with the value, otherwise NULL.
+ * _getenv - returns value variable
+ * @name: variable name
+ * Return: string with value
  **/
 char *_getenv(char *name)
 {

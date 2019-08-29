@@ -1,6 +1,7 @@
 #include "prototype.h"
 
 /**
+
  * getstrtok - Function that separates text in tokens to be passed to execv.
  *
  * @buffer: The input string.
