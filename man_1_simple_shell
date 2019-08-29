@@ -1,0 +1,71 @@
+.TH HSH 1P "28 August 2019" "Version 1.0" "Holberton Simple Shell"
+.SH NAME
+.B Hsh
+- Clone of the sh command as a simple shell with interactive/non-interactive mode
+.SH SYNOPSIS
+.B hsh
+command_string [command_name [argument...] ...]
+.SH DESCRIPTION
+This is a very simple clone of BASH based in C language and using the Linux Programming Interface.
+Hsh works as an Unix shell with limited functionality.  Has the same output as sh (/bin/sh) as well as the exact same error output excepting that when you print an error, the name of the program is ./hsh instead of sh.
+Hsh shell will execute commands readed from the user's standard input or by piping an input (for example with echo). It has 2 operating modes to work with it, the interactive mode, which in essence works as a normal Unix shell with it's own prompt (that's a fully customizable string in the source code), and the non-interactive mode, which only executes the commands passed as input and then return to the parent shell (like when you do sh -c "command").
+Hsh doesn't handle piping, redirection, aliases, expansion, flags and other completion functions like the command separator ( ; ).
+Hsh uses spaces, tabs and newlines as a delimiter between each argument.
+If the input command doesn't contains the absolute path to the command, hsh will loop through the $PATH and attempt to find a match using the stat function. If an executable file is found then hsh will append the command to the absolute path and then execute that. If the search failed then the shell will print a "not found" error.
+.SH EXAMPLE
+Using simple shell in Non-Interactive mode
+The shell can be run like sh you online need to pipe it your input and it will execute your input
+and print the output to the stdout, for doing that you can do for example echo "/bin/ls -la *.c" | ./hsh
+.nr step 1 1
+Using simple shell in Interactive mode
+.IP \n[step] 4
+Enter into the interactive mode with ./hsh after that you will see the prompt: ($) waiting for your input.
+.IP \n+[step]
+Enter any command that you want, for example: ls -l and press enter.
+.IP \n+[step]
+See the output of your command and the prompt will rise again.
+.IP \n+[step]
+Exit with the builtin command exit or with the Ctrl-D or Ctrl-C signals.
+.SH BULTINS
+.nr step 1 1
+The following builtins commands are alredy implemented in the source code:
+.IP \n[step] 2
+exit - quits the program with certain status code.
+.IP \n+[step]
+env  - prints the current environment variables
+.SH OPTIONS
+Hsh doesn't support options or flags, however, hsh reads all the parameters options and flags of the command that you pass as input to it.
+.SH RESERVED WORDS
+There are many that has special meaning for the shell (for example builtins or wildcards) when are taked as command input, for example:
+.TS
+center allbox tab(%);
+c c c c
+c c c c
+c c c c
+c c c c.
+    else    %    select   %      until        %    then
+    esac    %    time     %      fi           %    do
+    case    %    done     %      for          %    function
+    if      %    while    %      in           %    elif
+    ?       %    &        %      ;            %    [[ ]]
+    $       %    ''       %      <            %    >
+    =       %    !        %      ()           %    {}
+    *       %    ``       %      #            %    ~
+    .       %    ""       %      -            %    \\\
+.TE
+.SH COMMENTS
+The objective of this project was learn about the inner workings of a Unix shell and the Linux Programming Interface. We learned a lot of computer science concepts building this project, like processes,
+threads, children processes, system calls, tokens, PID's, I/O management, unit testing and so on.
+.SH BUGS
+No known bugs. If any are found or encountered,
+please log the process of what you were doing before the crash into a github's issue on the repo.
+.SH PARAMETERS
+As many as you want execute, but following the synopsis format above.
+.SH AUTHORS
+Written by Nicolas Forero Puello and Yennifer Tobon Yate
+Emails:
+915@holbertonschool.com
+899@holbertonschool.com
+.SH SEE ALSO
+.I sh(), fork(2), signal(2), wait(2), execve(2), exit(3), stat(2), write(2), kill(2), isattty(3), opendir(3),
+Linux Programming Interface by Michael Kerrisk
