@@ -1,0 +1,54 @@
+#include "prototype.h"
+
+/**
+ * getstrtok - function that separates text
+ * @buffer: input string
+ * @separator: text by which it separates
+ * Return: array with text
+ */
+char **getstrtok(char *buffer, const char *separator)
+{
+	char *token, **argv;
+	int words = 0;
+
+	argv = malloc(sizeof(char *) * 64);
+
+	if (argv == NULL)
+	{
+		exit(1);
+	}
+	token = strtok(buffer, separator);
+	while (token != NULL)
+	{
+		*(argv + words) = token;
+		token = strtok(NULL, separator);
+		words++;
+	}
+	*(argv + words) = NULL;
+	return (argv);
+}
+
+/**
+ * _funValPath - function that spltit a path
+ * @comand: command to evaluate
+ * @valuepath: text that represent to path
+ * Return: array with path
+ */
+char *_funValPath(char *comand, char *valuepath)
+{
+	char **pathexec, *concat, *filename;
+	int i = 0;
+
+	pathexec = getstrtok(valuepath, ":");
+	while (pathexec[i] != NULL)
+	{
+		concat = _strconcat(pathexec[i], "/");
+		filename = _strconcat(concat, comand);
+		if (access(filename, F_OK || X_OK) == 0)
+		{
+			return (filename);
+		}
+		i++;
+	}
+	return (NULL);
+}
