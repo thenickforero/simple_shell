@@ -23,9 +23,9 @@ char *_getenv(char *name)
 }
 
 /**
- * _printenv - returns the length of a string
+ * _printenv - Prints the current enviroment variables.
  *
- * Return: nothing
+ * Return: Always nothing (void).
  **/
 void _printenv(void)
 {

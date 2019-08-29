@@ -1,9 +1,13 @@
 #include "prototype.h"
 
 /**
- * getstrtok - function that separates text
- * @buffer: input string
- * @separator: text by which it separates
+
+ * getstrtok - Function that separates text in tokens to be passed to execv.
+ *
+ * @buffer: The input string.
+ *
+ * @separator: The string that delimitates the tokens of the string.
+ *
  * Return: array with text
  */
 char **getstrtok(char *buffer, const char *separator)
@@ -29,9 +33,12 @@ char **getstrtok(char *buffer, const char *separator)
 }
 
 /**
- * _funValPath - function that spltit a path
- * @comand: command to evaluate
- * @valuepath: text that represent to path
+ * _funValPath - Function that spltit a path.
+ *
+ * @comand: The string of the command to evaluate.
+ *
+ * @valuepath: The string that represent to path.
+ *
  * Return: array with path
  */
 char *_funValPath(char *comand, char *valuepath)
